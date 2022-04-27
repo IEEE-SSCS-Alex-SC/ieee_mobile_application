@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 // ignore: must_be_immutable
 class CourseListView extends StatelessWidget {
   const CourseListView({Key? key}) : super(key: key);
+  static const String routeName = "/courseListViewScreen";
 
   @override
   Widget build(BuildContext context) {

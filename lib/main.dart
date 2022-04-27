@@ -1,4 +1,6 @@
 import 'package:app/data/ui_provider.dart';
+import 'package:app/screens/articles_details.dart';
+import 'package:app/screens/course_list_view_screen.dart';
 import 'package:app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,9 +29,13 @@ class MyApp extends StatelessWidget {
           create: (_) => CoursesProvider(),
         ),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
+        routes: {
+          ArticleDetails.routeName: (context) => const ArticleDetails(),
+          CourseListView.routeName: (context) => const CourseListView(),
+        },
         debugShowCheckedModeBanner: false,
-        home: Scaffold(
+        home: const Scaffold(
           backgroundColor: Colors.black,
           body: MyHomePage(),
         ),

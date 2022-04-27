@@ -14,6 +14,7 @@ class IeeeListView extends StatelessWidget {
       child: ListView.separated(
         itemCount: items.length,
         itemBuilder: (context, index) => ItemContainer(
+          id: items[index].id,
           title: items[index].title,
           imageUrl: items[index].imageUrl,
           date: items[index].date.toString().substring(0, 10),
