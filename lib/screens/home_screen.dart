@@ -1,29 +1,39 @@
 import 'package:app/compenents/side_bar.dart';
-import 'package:app/data/data.dart';
+import 'package:app/data/ui_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../compenents/home_text.dart';
 
 // ignore: must_be_immutable
-class MyHomePage extends StatelessWidget {
-  MyHomePage({
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({
     Key? key,
   }) : super(key: key);
 
-  bool isClicked = false;
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        if (Provider.of<Data>(context, listen: false).isOpened == true) {
-          isClicked = false;
+    final uiProvider = Provider.of<UiProvider>(context);
+    final sideBarStatus = uiProvider.isClicked;
+    return WillPopScope(
+      onWillPop: () async {
+        if (sideBarStatus == true) {
+          uiProvider.toggleSideBar();
+          return false;
+        } else {
+          return true;
         }
-        Provider.of<Data>(context, listen: false).changeIsOpened(isClicked);
       },
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        body: Stack(
+      child: GestureDetector(
+        onTap: () {
+          uiProvider.toggleSideBar();
+        },
+        child: Stack(
           children: [
             Center(
               child: Container(

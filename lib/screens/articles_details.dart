@@ -25,6 +25,12 @@ Data Reterived from the database related to the article page
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      backgroundColor: Colors.black,
       body: Scrollbar(
         thickness: 2,
         child: SingleChildScrollView(
@@ -46,12 +52,6 @@ Data Reterived from the database related to the article page
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.arrow_back_ios),
-                          color: const Color(0xffBA0C2F),
-                          iconSize: 30,
-                        ),
                         const SizedBox(height: 350),
                         Text(
                           article.title,
@@ -80,7 +80,9 @@ Data Reterived from the database related to the article page
                   //content.map((p) => p + "\n\n").toString(),
                   "${article.content}",
                   style: const TextStyle(
-                      fontSize: 30.0, fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold),
                   overflow: TextOverflow.clip,
                 ),
               ),
