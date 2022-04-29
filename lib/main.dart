@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         routes: {
           ArticleDetails.routeName: (context) => const ArticleDetails(),
-          CourseListView.routeName: (context) => const CourseListView(),
+          CourseListView.routeName: (context) => CourseListView(),
         },
         debugShowCheckedModeBanner: false,
         home: const Scaffold(

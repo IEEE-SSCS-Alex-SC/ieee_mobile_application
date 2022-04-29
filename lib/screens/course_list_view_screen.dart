@@ -1,16 +1,31 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:app/compenents/list_view.dart';
 import 'package:app/data/courses_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-// ignore: must_be_immutable
-class CourseListView extends StatelessWidget {
-  const CourseListView({Key? key}) : super(key: key);
-  static const String routeName = "/courseListViewScreen";
+import '../data/course.dart';
 
+class CourseListView extends StatelessWidget {
+  CourseListView({Key? key}) : super(key: key);
+  static String routeName = "/courseListViewScreen";
+  CoursesProvider provider = CoursesProvider();
+  List<Course> courseList = [];
   @override
   Widget build(BuildContext context) {
-    final courses = Provider.of<CoursesProvider>(context).courses;
+    provider = Provider.of<CoursesProvider>(context);
+
+    if (provider.state == listScreenState.initial) {
+      provider.getCourses();
+      // ignore: prefer_const_constructors
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    } else {
+      courseList = provider.courseList;
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -23,9 +38,7 @@ class CourseListView extends StatelessWidget {
               fontWeight: FontWeight.bold),
         ),
       ),
-      body: IeeeListView(
-        items: courses,
-      ),
+      body: IeeeListView(items: courseList),
     );
   }
 }
