@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../data/course.dart';
+
 class CourseDetailsScreen extends StatelessWidget {
-  const CourseDetailsScreen({Key? key}) : super(key: key);
+  CourseDetailsScreen({Key? key}) : super(key: key);
+  late Course course;
+  static const String routeName = '/courseDetailsScreen';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

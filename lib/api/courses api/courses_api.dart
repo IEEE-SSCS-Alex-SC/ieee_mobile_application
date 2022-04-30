@@ -7,7 +7,7 @@ import 'dart:developer';
 class CourseAPI {
   Future<List<Course>> getCoursesAPI() async {
     String url =
-        "https://gist.githubusercontent.com/AbdelrahmanSalem9/6b3b201e446efdd92ebb076563aa37fc/raw/db859d7b10457c4437a6d2bb3408e4f8ae00a39b/test";
+        "https://gist.githubusercontent.com/AbdelrahmanSalem9/6b3b201e446efdd92ebb076563aa37fc/raw/85e08f7748089b9234d60b319de6461d6b239c6f/test";
     http.Response response = await http.get(Uri.parse(url));
     late CoursesResponse coursesResponse;
     if (response.statusCode == 200) {
