@@ -9,7 +9,7 @@ class CategoryTab extends StatelessWidget {
     return Tab(
         child: Text(
       "$category",
-      style: const TextStyle(color: Colors.black, fontSize: 18.0),
+      style: const TextStyle(color: Color(0xFFBA0C2F), fontSize: 18.0),
     ));
   }
 }

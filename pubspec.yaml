@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^6.0.2
   flutter_native_splash: ^2.1.1
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:
@@ -69,7 +70,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/article_image.jpg
+    - assets/article_image.png
     - assets/ieee-sscs-white.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
