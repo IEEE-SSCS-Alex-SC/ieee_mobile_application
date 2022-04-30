@@ -23,7 +23,8 @@ class CourseListView extends StatelessWidget {
         child: CircularProgressIndicator(),
       );
     } else {
-      courseList = provider.courseList;
+      // courseList = provider.courseList;
+      courseList = provider.courses;
     }
 
     return Scaffold(
@@ -42,3 +43,13 @@ class CourseListView extends StatelessWidget {
     );
   }
 }
+/*
+
+click course[0]
+
+Navigator course[0]
+
+
+
+$course.title
+*/
