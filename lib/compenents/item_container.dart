@@ -1,5 +1,3 @@
-import 'package:app/screens/articles_details.dart';
-import 'package:app/screens/course_details.dart';
 import 'package:flutter/material.dart';
 
 class ItemContainer extends StatelessWidget {

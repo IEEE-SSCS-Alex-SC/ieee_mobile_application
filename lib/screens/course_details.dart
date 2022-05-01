@@ -38,7 +38,7 @@ class CourseDetailsScreen extends StatelessWidget {
                   child: Text(
                     "${courses.title}",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: 'Poppins',
                         color: Color(0xFFBA0C2F),
                         fontSize: 28,
@@ -81,15 +81,15 @@ class CourseDetailsScreen extends StatelessWidget {
                   ),
                   child: RichText(
                     text: TextSpan(
-                      style: TextStyle(fontFamily: 'Poppins'),
+                      style: const TextStyle(fontFamily: 'Poppins'),
                       children: <TextSpan>[
                         TextSpan(
                             text: "${courses.courseDescription}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 11,
                               height: 1,
                             )),
-                        TextSpan(
+                        const TextSpan(
                             text: '\nContent',
                             style: TextStyle(
                                 color: Color(0xFFBA0C2F),
@@ -98,8 +98,8 @@ class CourseDetailsScreen extends StatelessWidget {
                                 height: 2)),
                         TextSpan(
                             text: "\n${courses.courseContent}",
-                            style: TextStyle(fontSize: 11)),
-                        TextSpan(
+                            style: const TextStyle(fontSize: 11)),
+                        const TextSpan(
                             text: '\nPrerequisites',
                             style: TextStyle(
                                 color: Color(0xFFBA0C2F),
@@ -108,11 +108,11 @@ class CourseDetailsScreen extends StatelessWidget {
                                 height: 2)),
                         TextSpan(
                             text: "\n${courses.perquisites}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 11,
                             )),
-                        TextSpan(
+                        const TextSpan(
                             text: '\nInstructor',
                             style: TextStyle(
                                 color: Color(0xFFBA0C2F),
@@ -121,11 +121,11 @@ class CourseDetailsScreen extends StatelessWidget {
                                 height: 2)),
                         TextSpan(
                             text: "\n${courses.instructors}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 11,
                             )),
-                        TextSpan(
+                        const TextSpan(
                             text: '\nCourse Length',
                             style: TextStyle(
                                 color: Color(0xFFBA0C2F),
@@ -134,11 +134,11 @@ class CourseDetailsScreen extends StatelessWidget {
                                 height: 2)),
                         TextSpan(
                             text: "\n${courses.courseLength}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 11,
                             )),
-                        TextSpan(
+                        const TextSpan(
                             text: '\nFees',
                             style: TextStyle(
                                 color: Color(0xFFBA0C2F),
@@ -147,7 +147,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                 height: 2)),
                         TextSpan(
                             text: "\n${courses.fees}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 11,
                             )),

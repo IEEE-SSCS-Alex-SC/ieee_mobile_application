@@ -1,4 +1,3 @@
-import 'package:app/api/courses%20api/courses_response.dart';
 import 'package:flutter/material.dart';
 import '../api/courses api/courses_api.dart';
 import 'course.dart';

@@ -1,5 +1,3 @@
-// import 'package:app/api/courses%20api/meta_data.dart';
-
 import '../../data/course.dart';
 
 class CoursesResponse {
@@ -8,8 +6,9 @@ class CoursesResponse {
   CoursesResponse({required this.courses});
 
   static fromJson(Map<String, dynamic> json) {
-    //todo add the metadata parsing
     CoursesResponse coursesResponse = CoursesResponse(courses: []);
+
+    //todo add the metadata parsing
     // coursesResponse.metaData = MetaData.fromJson(json['meta_data']);
     for (var c in json['data']) {
       coursesResponse.courses.add(Course.fromJson(c));

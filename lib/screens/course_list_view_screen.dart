@@ -20,7 +20,7 @@ class CourseListView extends StatelessWidget {
       provider.getCourses();
       // ignore: prefer_const_constructors
       return Center(
-        child: CircularProgressIndicator(),
+        child: const CircularProgressIndicator(),
       );
     } else if (provider.state == listScreenState.error) {
       return Container(
@@ -29,7 +29,7 @@ class CourseListView extends StatelessWidget {
           child: Text(
             provider.errorMessage,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
           ),
         ),
       );
