@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Course {
   final int? id;
   final String? title;
@@ -26,16 +28,16 @@ class Course {
   static fromJson(Map<String, dynamic> json) {
     Course course = Course(
         id: json['id'],
-        title: json['title'],
-        date: json['date'],
-        imageUrl: json['imgUrl'],
-        courseContent: json['courseContent'],
-        courseDescription: json['courseDescription'],
-        perquisites: json['perquisites'],
-        instructors: json['instructors'],
-        courseLength: json['courseLength'],
-        fees: json['fees']);
-
+        title: json['attributes']['title'],
+        date: json['attributes']['date'],
+        imageUrl: json['attributes']['image'],
+        courseContent: json['attributes']['content'],
+        courseDescription: json['attributes']['description'],
+        // courseDescription: "Not Avaliable Yet from the API",
+        perquisites: json['attributes']['prerequisites'],
+        instructors: json['attributes']['instructor'],
+        courseLength: json['attributes']['length'],
+        fees: json['attributes']['fees']);
     return course;
   }
 }

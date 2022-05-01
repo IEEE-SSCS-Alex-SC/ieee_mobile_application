@@ -22,9 +22,19 @@ class CourseListView extends StatelessWidget {
       return Center(
         child: CircularProgressIndicator(),
       );
+    } else if (provider.state == listScreenState.error) {
+      return Container(
+        color: Colors.white,
+        child: Center(
+          child: Text(
+            provider.errorMessage,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
+      );
     } else {
-      // courseList = provider.courseList;
-      courseList = provider.courses;
+      courseList = provider.courseList;
     }
 
     return Scaffold(

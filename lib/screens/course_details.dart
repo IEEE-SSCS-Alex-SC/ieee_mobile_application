@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../data/course.dart';
+import '../data/courses_provider.dart';
 
 class CourseDetailsScreen extends StatelessWidget {
   CourseDetailsScreen({Key? key}) : super(key: key);
-  late Course course;
+  late Course courses;
   static const String routeName = '/courseDetailsScreen';
   @override
   Widget build(BuildContext context) {
+    final int courseId = ModalRoute.of(context)!.settings.arguments as int;
+    courses = Provider.of<CoursesProvider>(context, listen: false)
+        .findArticleById(courseId);
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -30,8 +35,8 @@ class CourseDetailsScreen extends StatelessWidget {
                   decoration: const BoxDecoration(
                     color: Colors.black,
                   ),
-                  child: const Text(
-                    'Data Structures &\nAlgorithms',
+                  child: Text(
+                    "${courses.title}",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -43,18 +48,17 @@ class CourseDetailsScreen extends StatelessWidget {
                 const SizedBox(
                   height: 24,
                 ),
-                const Center(
-                  child: Image(
-                    image: AssetImage('assets/article_image.png'),
-                    alignment: Alignment.center,
-                  ),
-                ),
+                // Center(
+                //   child: Image(
+                //     image: AssetImage('${courses.imageUrl}'),
+                //     alignment: Alignment.center,
+                //   ),
+                // ),
                 const SizedBox(
                   height: 23,
                 ),
                 Container(
                   width: 360,
-                  // height: 86,
                   decoration: const BoxDecoration(
                     color: Colors.black,
                   ),
@@ -76,14 +80,11 @@ class CourseDetailsScreen extends StatelessWidget {
                     color: Colors.black,
                   ),
                   child: RichText(
-                    text: const TextSpan(
+                    text: TextSpan(
                       style: TextStyle(fontFamily: 'Poppins'),
-                      // text:
-                      //     'Data Structure is a way of collecting and organising data in such a way that we can perform operations on these data in an effective way. Data Structures is about rendering data elements in terms of some relationship, for better organization and storage. An algorithm is a finite set of instructions or logic, written in order to accomplish a certain predefined task. Algorithm is not the complete code or program, it is just the core logic(solution) of a problem, which can be expressed either as an informal high-level description as pseudocode or using a flowchart ',
                       children: <TextSpan>[
                         TextSpan(
-                            text:
-                                'Data Structure is a way of collecting and organising data in such a way that we can perform operations on these data in an effective way. Data Structures is about rendering data elements in terms of some relationship, for better organization and storage. An algorithm is a finite set of instructions or logic, written in order to accomplish a certain predefined task. Algorithm is not the complete code or program, it is just the core logic(solution) of a problem, which can be expressed either as an informal high-level description as pseudocode or using a flowchart.',
+                            text: "${courses.courseDescription}",
                             style: TextStyle(
                               fontSize: 11,
                               height: 1,
@@ -96,8 +97,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 height: 2)),
                         TextSpan(
-                            text:
-                                '\n- Complexity analysis + Array + Amortized Complexity\n- Analysis + Dynamic array\n- Linked list (Singly and Doubly)\n- Stack + Queue\n- Sorting algorithms (Selection sort + Insertion sort + Bubble sort + Count sort) + Divide & Conquer (Binary search + Merge sort + Quick sort)\n- Binary tree + recursion\n- Hash Map\n- Heap + Heap sort\n- Graph + Graph traversal (Breadth first search + Depth first search)\n- String + Dynamic programming + Greed',
+                            text: "\n${courses.courseContent}",
                             style: TextStyle(fontSize: 11)),
                         TextSpan(
                             text: '\nPrerequisites',
@@ -107,7 +107,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 height: 2)),
                         TextSpan(
-                            text: '\n- Programming in C or C++',
+                            text: "\n${courses.perquisites}",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 11,
@@ -120,8 +120,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 height: 2)),
                         TextSpan(
-                            text:
-                                '\n- Eng. Abo-Elhamd Ali\n- Eng. Mennatallah samier',
+                            text: "\n${courses.instructors}",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 11,
@@ -134,8 +133,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 height: 2)),
                         TextSpan(
-                            text:
-                                '\n- The course consists of 7 sessions\n- Each session is 3 hours',
+                            text: "\n${courses.courseLength}",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 11,
@@ -148,7 +146,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 height: 2)),
                         TextSpan(
-                            text: '\n- Members: 110\n- Non-members: 120',
+                            text: "\n${courses.fees}",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 11,
