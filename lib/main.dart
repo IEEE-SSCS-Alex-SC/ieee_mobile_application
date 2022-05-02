@@ -1,5 +1,6 @@
 import 'package:app/data/ui_provider.dart';
 import 'package:app/screens/articles_details.dart';
+import 'package:app/screens/course_details.dart';
 import 'package:app/screens/course_list_view_screen.dart';
 import 'package:app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         routes: {
           ArticleDetails.routeName: (context) => const ArticleDetails(),
-          CourseListView.routeName: (context) => const CourseListView(),
+          CourseListView.routeName: (context) => CourseListView(),
+          CourseDetailsScreen.routeName: (context) => CourseDetailsScreen(),
         },
         debugShowCheckedModeBanner: false,
         home: const Scaffold(

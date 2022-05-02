@@ -18,6 +18,7 @@ class IeeeListView extends StatelessWidget {
           title: items[index].title,
           imageUrl: items[index].imageUrl,
           date: items[index].date.toString().substring(0, 10),
+          route: items[index].routeName,
         ),
         separatorBuilder: (context, index) => Center(
           child: Container(

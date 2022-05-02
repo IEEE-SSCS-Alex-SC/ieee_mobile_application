@@ -13,6 +13,8 @@ class Article {
   final String imageUrl;
   final String date;
   final String? content;
+  final String routeName = '/articleDetails';
+
   const Article(
       {required this.title,
       required this.date,

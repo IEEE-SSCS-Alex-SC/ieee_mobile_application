@@ -1,37 +1,31 @@
 import 'package:flutter/material.dart';
-
+import '../api/courses api/courses_api.dart';
 import 'course.dart';
 
-class CoursesProvider with ChangeNotifier {
-  final List<Course> _courses = [
-    Course(
-        title: 'EMBEDDED ARM',
-        imageUrl:
-            'https://res.cloudinary.com/rs-designspark-live/image/upload/c_limit,w_595/f_auto/v1/article/What_is_an_embedded_system_9973b860b8142db0b5b4290e405d38cadb0cc242',
-        date: "20/12/2012"),
-    Course(
-        title: 'EMBEDDED ARM',
-        imageUrl:
-            'https://res.cloudinary.com/rs-designspark-live/image/upload/c_limit,w_595/f_auto/v1/article/What_is_an_embedded_system_9973b860b8142db0b5b4290e405d38cadb0cc242',
-        date: "20/12/2012"),
-    Course(
-        title: 'EMBEDDED ARM',
-        imageUrl:
-            'https://res.cloudinary.com/rs-designspark-live/image/upload/c_limit,w_595/f_auto/v1/article/What_is_an_embedded_system_9973b860b8142db0b5b4290e405d38cadb0cc242',
-        date: "20/12/2012"),
-    Course(
-        title: 'EMBEDDED ARM',
-        imageUrl:
-            'https://res.cloudinary.com/rs-designspark-live/image/upload/c_limit,w_595/f_auto/v1/article/What_is_an_embedded_system_9973b860b8142db0b5b4290e405d38cadb0cc242',
-        date: "20/12/2012"),
-    Course(
-        title: 'EMBEDDED ARM',
-        imageUrl:
-            'https://res.cloudinary.com/rs-designspark-live/image/upload/c_limit,w_595/f_auto/v1/article/What_is_an_embedded_system_9973b860b8142db0b5b4290e405d38cadb0cc242',
-        date: "20/12/2012")
-  ];
+enum listScreenState { initial, error, loaded }
 
-  List<Course> get courses {
-    return _courses;
+class CoursesProvider with ChangeNotifier {
+  listScreenState state = listScreenState.initial;
+  late List<Course> courseList;
+  late APIResult apiResult;
+  late String errorMessage;
+  getCourses() async {
+    // courseList = await CourseAPI().getCoursesAPI();
+    apiResult = await CourseAPI().getCoursesAPI();
+
+    if (apiResult.error == "") //No Error Happened
+    {
+      courseList = apiResult.data;
+      state = listScreenState.loaded;
+      notifyListeners();
+    } else {
+      state = listScreenState.error;
+      errorMessage = apiResult.error;
+      notifyListeners();
+    }
+  }
+
+  Course findArticleById(int id) {
+    return courseList.firstWhere((element) => element.id == id);
   }
 }

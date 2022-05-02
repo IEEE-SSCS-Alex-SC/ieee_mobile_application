@@ -31,7 +31,7 @@ class SideBoxesColumn extends StatelessWidget {
       ),
       SideBox(
         onTap: (() => Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const CourseListView()))),
+            MaterialPageRoute(builder: (context) => CourseListView()))),
         icon: Icons.monitor,
         title: "Courses",
       ),

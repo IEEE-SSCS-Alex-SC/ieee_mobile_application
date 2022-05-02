@@ -1,9 +1,9 @@
-import 'package:app/screens/articles_details.dart';
 import 'package:flutter/material.dart';
 
 class ItemContainer extends StatelessWidget {
   const ItemContainer(
       {Key? key,
+      required this.route,
       required this.date,
       required this.imageUrl,
       required this.title,
@@ -13,12 +13,13 @@ class ItemContainer extends StatelessWidget {
   final String date;
   final String imageUrl;
   final int id;
+  final String route;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, ArticleDetails.routeName, arguments: id);
+        Navigator.pushNamed(context, route, arguments: id);
       },
       child: Container(
         padding: const EdgeInsets.all(20.0),
