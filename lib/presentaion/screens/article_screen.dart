@@ -1,3 +1,3 @@
-class article {
+class Article {
   
 }
