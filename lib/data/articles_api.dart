@@ -68,7 +68,6 @@ class ArticlesApi {
         articleResponse = ArticleResponse.fromJson(r);
 
         apiResult.data = articleResponse;
-        print(articleResponse);
       } else {
         apiResult.faliure =
             Faliure(code: response.statusCode, message: "Error in server");
