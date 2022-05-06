@@ -1,8 +1,8 @@
+import 'package:app/data/article.dart';
 import 'package:app/data/articles_provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
-import '../data/article.dart';
 import 'package:flutter/material.dart';
 
 class ArticleDetails extends StatefulWidget {
@@ -22,7 +22,7 @@ Data Reterived from the database related to the article page
 }
 
 class _ArticleDetailsState extends State<ArticleDetails> {
-  ArticleResponse? articleData;
+  Article? articleData;
   ArticlesProvider? articlesProvider;
   late int articleId;
   @override
@@ -36,7 +36,6 @@ class _ArticleDetailsState extends State<ArticleDetails> {
   @override
   Widget build(BuildContext context) {
     if (articlesProvider!.detailsState == DetailsScreenState.initial) {
-      //  articlesProvider!.findArticleById(articleId);
       return const Center(child: CircularProgressIndicator());
     } else if (articlesProvider!.detailsState == DetailsScreenState.error) {
       Fluttertoast.showToast(
@@ -68,7 +67,7 @@ class _ArticleDetailsState extends State<ArticleDetails> {
                   Opacity(
                     opacity: 0.8,
                     child: Image.network(
-                      articleData!.article.imageUrl,
+                      articleData!.imageUrl,
                       height: 500,
                       fit: BoxFit.fill,
                     ),
@@ -81,7 +80,7 @@ class _ArticleDetailsState extends State<ArticleDetails> {
                       children: [
                         const SizedBox(height: 350),
                         Text(
-                          articleData!.article.title,
+                          articleData!.title,
                           style: const TextStyle(
                             fontSize: 30,
                             color: Color(0xffBA0C2F),
@@ -105,7 +104,7 @@ class _ArticleDetailsState extends State<ArticleDetails> {
                 padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
                 child: Text(
                   //content.map((p) => p + "\n\n").toString(),
-                  "${articleData!.article.content}",
+                  "${articleData!.content}",
                   style: const TextStyle(
                       color: Colors.white,
                       fontSize: 30.0,

@@ -16,7 +16,7 @@ class ArticleListView extends StatefulWidget {
 }
 
 class _ArticleListViewState extends State<ArticleListView> {
-  late List<ArticleResponse> articleList;
+  late List<Article> articleList;
   late ArticlesProvider articlesProvider;
   TabBar get _tabBar => const TabBar(
         indicatorColor: Color(0xFFBA0C2F),
