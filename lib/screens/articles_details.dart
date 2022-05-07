@@ -1,10 +1,11 @@
+import 'package:app/data/article.dart';
 import 'package:app/data/articles_provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
-import '../data/article.dart';
 import 'package:flutter/material.dart';
 
-class ArticleDetails extends StatelessWidget {
+class ArticleDetails extends StatefulWidget {
 /*
 Data Reterived from the database related to the article page
 1- Image URL
@@ -17,11 +18,38 @@ Data Reterived from the database related to the article page
   static const String routeName = '/articleDetails';
 
   @override
+  State<ArticleDetails> createState() => _ArticleDetailsState();
+}
+
+class _ArticleDetailsState extends State<ArticleDetails> {
+  Article? articleData;
+  ArticlesProvider? articlesProvider;
+  late int articleId;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    articleId = ModalRoute.of(context)!.settings.arguments as int;
+    articlesProvider = Provider.of<ArticlesProvider>(context);
+    articlesProvider!.findArticleById(articleId);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final int articleId = ModalRoute.of(context)!.settings.arguments as int;
-    final Article articleData =
-        Provider.of<ArticlesProvider>(context, listen: false)
-            .findArticleById(articleId);
+    if (articlesProvider!.detailsState == DetailsScreenState.initial) {
+      return const Center(child: CircularProgressIndicator());
+    } else if (articlesProvider!.detailsState == DetailsScreenState.error) {
+      Fluttertoast.showToast(
+          msg: articlesProvider!.errorMessage!,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    } else {
+      articleData = articlesProvider!.articleDetails;
+    }
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -39,7 +67,7 @@ Data Reterived from the database related to the article page
                   Opacity(
                     opacity: 0.8,
                     child: Image.network(
-                      articleData.imageUrl,
+                      articleData!.imageUrl,
                       height: 500,
                       fit: BoxFit.fill,
                     ),
@@ -52,7 +80,7 @@ Data Reterived from the database related to the article page
                       children: [
                         const SizedBox(height: 350),
                         Text(
-                          articleData.title,
+                          articleData!.title,
                           style: const TextStyle(
                             fontSize: 30,
                             color: Color(0xffBA0C2F),
@@ -76,7 +104,7 @@ Data Reterived from the database related to the article page
                 padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
                 child: Text(
                   //content.map((p) => p + "\n\n").toString(),
-                  "${articleData.content}",
+                  "${articleData!.content}",
                   style: const TextStyle(
                       color: Colors.white,
                       fontSize: 30.0,

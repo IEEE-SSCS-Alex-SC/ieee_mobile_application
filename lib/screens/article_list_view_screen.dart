@@ -1,14 +1,23 @@
 import 'package:app/compenents/list_view.dart';
+import 'package:app/data/article.dart';
 import 'package:app/data/articles_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../compenents/tab.dart';
 
 // ignore: must_be_immutable
-class ArticleListView extends StatelessWidget {
+class ArticleListView extends StatefulWidget {
   const ArticleListView({Key? key}) : super(key: key);
 
+  @override
+  State<ArticleListView> createState() => _ArticleListViewState();
+}
+
+class _ArticleListViewState extends State<ArticleListView> {
+  late List<Article> articleList;
+  late ArticlesProvider articlesProvider;
   TabBar get _tabBar => const TabBar(
         indicatorColor: Color(0xFFBA0C2F),
         tabs: [
@@ -17,10 +26,30 @@ class ArticleListView extends StatelessWidget {
           CategoryTab(category: "Category 3"),
         ],
       );
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    articlesProvider = Provider.of<ArticlesProvider>(context);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final articlesProvider = Provider.of<ArticlesProvider>(context);
+    if (articlesProvider.state == ListScreenState.initial) {
+      articlesProvider.getAllArticles();
+      return const Center(child: CircularProgressIndicator());
+    } else if (articlesProvider.state == ListScreenState.error) {
+  
+      Fluttertoast.showToast(
+          msg: articlesProvider.errorMessage!,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    } else {
+      articleList = articlesProvider.articlesList;
+    }
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -37,58 +66,16 @@ class ArticleListView extends StatelessWidget {
             )),
         body: TabBarView(children: [
           IeeeListView(
-            items: articlesProvider.articles,
+            items: articleList,
           ),
           IeeeListView(
-            items: articlesProvider.articles,
+            items: articleList,
           ),
           IeeeListView(
-            items: articlesProvider.articles,
+            items: articleList,
           ),
         ]),
       ),
     );
   }
 }
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// DefaultTabController(
-//       length: 3,
-//       child: Scaffold(
-//         backgroundColor: Colors.white,
-//         appBar: AppBar(
-//           bottom: const TabBar(indicatorColor: Color(0xFFBA0C2F), tabs: [
-//             CategoryTab(category: "Category 1"),
-//             CategoryTab(category: "Category 2"),
-//             CategoryTab(category: "Category 3"),
-//           ]),
-//           elevation: 0,
-//           leadingWidth: 0,
-//           centerTitle: false,
-//           backgroundColor: Colors.white,
-//           title: Container(
-//             padding: const EdgeInsets.only(top: 15.0),
-//             child: const Text(
-//               "Articles",
-//               style: TextStyle(
-//                   fontSize: 28,
-//                   color: Color(0xFFBA0C2F),
-//                   fontWeight: FontWeight.bold),
-//             ),
-//           ),
-//         ),
-//         body: const TabBarView(children: [
-//           ArticleListView(),
-//           ArticleListView(),
-//           ArticleListView(),
-//         ]),
-//       ),
-//     );
-//   }
-// }
-  
